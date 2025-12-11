@@ -177,8 +177,14 @@ open class EditImageViewController: UIViewController {
     /// Since there is no way to know the size of that image before run time, we adjust the constraints to make sure that the quadView is on top of the displayed image.
     private func adjustQuadViewConstraints() {
         let frame = AVMakeRect(aspectRatio: image.size, insideRect: imageView.bounds)
-        quadViewWidthConstraint.constant = frame.size.width
-        quadViewHeightConstraint.constant = frame.size.height
+
+        if quadViewWidthConstraint.constant != frame.size.width {
+            quadViewWidthConstraint.constant = frame.size.width
+        }
+
+        if quadViewHeightConstraint.constant != frame.size.height {
+            quadViewHeightConstraint.constant = frame.size.height
+        }
     }
     
     /// Generates a `Quadrilateral` object that's centered and one third of the size of the passed in image.
